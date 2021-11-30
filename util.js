@@ -30,9 +30,11 @@ export const util = {
         }
         return result;
     },
+    toCapitalCase(str) {
+        return str[0].toUpperCase() + str.slice(1).toLowerCase();
+    },
     isInstance(instance, type) {
-        type = type[0].toUpperCase() + type.slice(1).toLowerCase();
-        return Object.prototype.toString.call(instance) === '[object ' + type + ']';
+        return Object.prototype.toString.call(instance) === '[object ' + this.toCapitalCase(type) + ']';
     },
     isSubset(subset, superset) {
         let yes = true;

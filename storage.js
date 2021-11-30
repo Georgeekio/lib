@@ -7,15 +7,18 @@ class Collection {
         Object.assign(this, options);
     }
 
+    selectAll() {
+        return this.db.get().collections[this.name];
+    }
+
     select(doc) {
         if(!util.isInstance(doc, 'object')) return;
-        const data = this.db.get();
-        return data.collections[this.name].filter(elt => util.isSubset(doc, elt));
+        this.selectAll().filter(elt => util.isSubset(doc, elt));
     }
 
     insert(doc) {
         if(!util.isInstance(doc, 'object')) return;
-        doc.id = util.genID();
+        doc.id = doc.id || util.genID();
         const data = this.db.get();
         data.collections[this.name].push(doc);
         this.db.set(data);
