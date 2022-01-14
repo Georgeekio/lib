@@ -3,7 +3,7 @@ export const util = {
         svg: 'http://www.w3.org/2000/svg'
     },
     createElement(tagName, attrs = {}, ...children) {
-        const xmlns = this.xmlns[tagName] || 'http://www.w3.org/1999/xhtml'
+        const xmlns = this.xmlns[tagName] || 'http://www.w3.org/1999/xhtml';
         const elt = document.createElementNS(xmlns, tagName);
         this.setAttributes(elt, attrs);
         if(children.length) children.forEach(child => elt.append(child));

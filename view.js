@@ -18,14 +18,14 @@ export class View {
     }
 
     createElement(tagName, attrs = {}, ...children) {
-        const xmlns = this.constructor.xmlns[tagName] || 'http://www.w3.org/1999/xhtml';
+        const xmlns = View.xmlns[tagName] || 'http://www.w3.org/1999/xhtml';
         const elt = document.createElementNS(xmlns, tagName);
-        this.createAttributes(elt, attrs);
+        this.setAttributes(elt, attrs);
         if(children.length) children.forEach(child => elt.appendChild(child));
         return elt;
     }
 
-    createAttributes(elt, attrs) {
+    setAttributes(elt, attrs) {
         for(const [attr, value] of Object.entries(attrs)) {
             elt.setAttribute(attr, value);
         }
